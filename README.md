@@ -1,8 +1,6 @@
 # Character Sheet Portfolio
 
-A unique portfolio website designed like a D&D character sheet, built with Astro for lightning-fast performance and easy content management.
-
-![Character Sheet Portfolio Preview](https://via.placeholder.com/800x400/f8f6f0/2a2520?text=Character+Sheet+Portfolio)
+A unique portfolio website designed like a tabletop RPG character sheet, built with Astro for lightning-fast performance and easy content management.
 
 ## Features
 
