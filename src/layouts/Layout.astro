@@ -1,22 +1,409 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+// src/layouts/Layout.astro
+export interface Props {
+  title: string;
+}
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Personal portfolio in character sheet format" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <style is:global>
+      :root {
+        --bg-color: #f8f6f0;
+        --text-color: #2a2520;
+        --line-color: #4a453f;
+        --accent-color: #6b6b6b;
+        --paper-shadow: rgba(0, 0, 0, 0.1);
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #1a1612;
+        --text-color: #e8e6e0;
+        --line-color: #8a857f;
+        --accent-color: #9a9a9a;
+        --paper-shadow: rgba(255, 255, 255, 0.05);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Georgia', serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.4;
+        padding: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .character-sheet {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--bg-color);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px var(--paper-shadow);
+        position: relative;
+      }
+
+      .theme-toggle {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: 2px solid var(--line-color);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        color: var(--text-color);
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        background: var(--accent-color);
+        transform: rotate(15deg);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        position: relative;
+      }
+
+      .header::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 20%;
+        right: 20%;
+        height: 2px;
+        background: var(--line-color);
+        border-radius: 2px;
+      }
+
+      .name {
+        font-size: 2.5em;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
+      .typewriter {
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      .typing-cursor {
+        width: 2px;
+        height: 1em;
+        background-color: var(--text-color);
+        animation: blink 1s step-start infinite;
+        margin-left: 5px;
+        display: inline-block;
+      }
+
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+
+      .title {
+        font-size: 1.2em;
+        color: var(--accent-color);
+        font-style: italic;
+      }
+
+      .main-content {
+        display: grid;
+        grid-template-areas:
+          "profile projects"
+          "learning projects"
+          "reading listening"
+          "notes notes"
+          "connect connect";
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .section {
+        background: var(--bg-color);
+        border: 3px solid var(--line-color);
+        border-radius: 10px;
+        padding: 20px;
+        position: relative;
+      }
+
+      .section::before {
+        content: attr(data-title);
+        position: absolute;
+        top: -12px;
+        left: 15px;
+        background: var(--bg-color);
+        padding: 0 10px;
+        font-weight: bold;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--accent-color);
+      }
+
+      .photo-section { grid-area: profile; }
+      .projects-section { grid-area: projects; }
+      .learning-section { grid-area: learning; }
+      .reading-section { grid-area: reading; }
+      .listening-section { grid-area: listening; }
+      .notes-section { grid-area: notes; }
+      .links-section { grid-area: connect; text-align: center; }
+
+      .section h2 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+        color: var(--accent-color);
+        padding-bottom: 8px;
+        position: relative;
+      }
+
+      .section h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--line-color);
+      }
+
+      .photo-placeholder {
+        width: 200px;
+        height: 200px;
+        border: 3px solid var(--line-color);
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-color);
+        color: var(--bg-color);
+        font-size: 3em;
+        overflow: hidden;
+      }
+
+      .photo-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .project-item, .book-item, .music-item {
+        border-left: 3px solid var(--accent-color);
+        padding-left: 15px;
+        margin-bottom: 15px;
+      }
+
+      .project-item h3, .book-item h3, .music-item h3 {
+        font-size: 1.1em;
+        margin-bottom: 5px;
+        color: var(--text-color);
+      }
+
+      .project-item p, .book-item p, .music-item p {
+        font-size: 0.9em;
+        color: var(--accent-color);
+        margin-bottom: 5px;
+      }
+
+      /* Global link styles */
+      a {
+        color: var(--text-color);
+        text-decoration: none;
+        border-bottom: 1px solid var(--accent-color);
+        transition: all 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--accent-color);
+        border-bottom-color: var(--text-color);
+      }
+
+      /* Exception for buttons and special links */
+      .link-button {
+        border-bottom: none;
+      }
+
+      .section ul {
+        list-style: none;
+        margin-left: 0;
+      }
+
+      .section li {
+        margin-bottom: 8px;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .section li::before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+        font-size: 0.8em;
+      }
+
+      .blog-entry {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        position: relative;
+      }
+
+      .blog-entry:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--line-color);
+        opacity: 0.5;
+      }
+
+      .blog-entry:last-child {
+        margin-bottom: 0;
+      }
+
+      .blog-date {
+        font-size: 0.8em;
+        color: var(--accent-color);
+        font-style: italic;
+      }
+
+      .blog-content {
+        margin-top: 5px;
+      }
+
+      .links-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .link-button {
+        padding: 10px 20px;
+        border: 2px solid var(--line-color);
+        background: none;
+        color: var(--text-color);
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .link-button:hover {
+        background: var(--accent-color);
+        color: var(--bg-color);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          grid-template-areas:
+            "profile"
+            "projects"
+            "learning"
+            "reading"
+            "listening"
+            "notes"
+            "connect";
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        
+        .character-sheet {
+          padding: 30px;
+          margin: 10px;
+        }
+        
+        .name {
+          font-size: 2em;
+        }
+        
+        .links-container {
+          gap: 10px;
+        }
+        
+        .link-button {
+          padding: 8px 15px;
+          font-size: 0.9em;
+        }
+      }
+    </style>
+
+    <script>
+      function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+      }
+
+      // Typing animation
+      function typeWriter() {
+        const typewriterElement = document.getElementById('typewriter');
+        
+        if (!typewriterElement) return;
+        
+        const text = typewriterElement.textContent || "Your Name Here";
+        typewriterElement.textContent = '';
+        
+        let i = 0;
+        function type() {
+          if (i < text.length) {
+            typewriterElement.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, 100);
+          }
+        }
+        
+        setTimeout(type, 500);
+      }
+
+      // Load saved theme and start typing animation
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        
+        typeWriter();
+      });
+
+      // Make toggle function globally available
+      window.toggleTheme = toggleTheme;
+    </script>
+  </body>
+</html>

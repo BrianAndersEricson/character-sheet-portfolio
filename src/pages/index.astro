@@ -1,11 +1,151 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Import data
+import profile from '../data/profile.json';
+import projects from '../data/projects.json';
+import books from '../data/books.json';
+import music from '../data/music.json';
+import learning from '../data/learning.json';
+import links from '../data/links.json';
+
+// Get recent blog posts
+const blogPosts = await getCollection('blog');
+const recentPosts = blogPosts
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Character Sheet Portfolio">
+  <div class="character-sheet">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">🌓</button>
+    
+    <header class="header">
+      <h1 class="name">
+        <span class="typewriter" id="typewriter">{profile.name}</span><span class="typing-cursor" id="cursor"></span>
+      </h1>
+      <p class="title">{profile.title}</p>
+    </header>
+
+    <div class="main-content">
+      <!-- Profile Section -->
+      <div class="section photo-section" data-title="Profile">
+        <div class="photo-placeholder">
+          {profile.photo.startsWith('/') || profile.photo.startsWith('http') ? (
+            <img src={profile.photo} alt="Profile photo" />
+          ) : (
+            profile.photo
+          )}
+        </div>
+        <p><strong>Currently:</strong> {profile.currently}</p>
+        <p><strong>Focus:</strong> {profile.focus}</p>
+        <p><strong>Experience:</strong> {profile.experience}</p>
+      </div>
+
+      <!-- Projects Section -->
+      <div class="section projects-section" data-title="Projects">
+        <h2>Current Projects</h2>
+        {projects.map(project => (
+          <div class="project-item">
+            <h3>
+              {project.url ? (
+                <a href={project.url} target="_blank" rel="noopener noreferrer">
+                  {project.title}
+                </a>
+              ) : (
+                project.title
+              )}
+            </h3>
+            <p>{project.description}</p>
+            <p>Status: {project.status}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Learning Section -->
+      <div class="section learning-section" data-title="Learning">
+        <h2>What I'm Learning</h2>
+        <ul>
+          {learning.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Reading Section -->
+      <div class="section reading-section" data-title="Reading">
+        <h2>Currently Reading</h2>
+        {books.map(book => (
+          <div class="book-item">
+            <h3>
+              {book.url ? (
+                <a href={book.url} target="_blank" rel="noopener noreferrer">
+                  {book.title}
+                </a>
+              ) : (
+                book.title
+              )}
+            </h3>
+            <p>by {book.author}</p>
+            <p>Progress: {book.progress}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Listening Section -->
+      <div class="section listening-section" data-title="Listening">
+        <h2>Current Playlist</h2>
+        {music.map(item => (
+          <div class="music-item">
+            <h3>
+              {item.url ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {item.title}
+                </a>
+              ) : (
+                item.title
+              )}
+            </h3>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Blog Section -->
+      <div class="section notes-section" data-title="Notes">
+        <h2>Recent Thoughts & Updates</h2>
+        {recentPosts.map(post => (
+          <div class="blog-entry">
+            <div class="blog-date">{post.data.date.toLocaleDateString('en-US', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            })}</div>
+            <div class="blog-content">
+              <strong><a href={`/blog/${post.slug}`}>{post.data.title}</a></strong>
+              {post.data.excerpt && <p>{post.data.excerpt}</p>}
+            </div>
+          </div>
+        ))}
+        <p style="text-align: center; margin-top: 20px;">
+          <a href="/blog" class="link-button">View All Posts</a>
+        </p>
+      </div>
+
+      <!-- Links Section -->
+      <div class="section links-section" data-title="Connect">
+        <h2>Find Me Around the Web</h2>
+        <div class="links-container">
+          {links.map(link => (
+            <a href={link.url} class="link-button" target="_blank" rel="noopener noreferrer">
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>

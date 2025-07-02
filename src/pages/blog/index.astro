@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const blogPosts = await getCollection('blog');
+const publishedPosts = blogPosts
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Blog Posts">
+  <div class="character-sheet">
+    <header class="header">
+      <h1 class="name">Blog Posts</h1>
+      <p class="title">All my thoughts and updates</p>
+    </header>
+
+    <div class="blog-list">
+      {publishedPosts.map(post => (
+        <article class="blog-post-card">
+          <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
+          <p class="blog-date">{post.data.date.toLocaleDateString()}</p>
+          {post.data.excerpt && <p>{post.data.excerpt}</p>}
+        </article>
+      ))}
+    </div>
+
+    <p style="text-align: center; margin-top: 30px;">
+      <a href="/" class="link-button">← Home </a>
+    </p>
+  </div>
+
+  <style>
+    .blog-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .blog-post-card {
+      border: 3px solid var(--line-color);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: var(--bg-color);
+    }
+
+    .blog-post-card h2 a {
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    .blog-post-card h2 a:hover {
+      color: var(--accent-color);
+    }
+  </style>
+</Layout>

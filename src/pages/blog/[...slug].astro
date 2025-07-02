@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog');
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+  <div class="character-sheet">
+    <article class="blog-post">
+      <header class="blog-header">
+        <h1>{post.data.title}</h1>
+        <p class="blog-date">{post.data.date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })}</p>
+      </header>
+
+      <div class="blog-content">
+        <Content />
+      </div>
+
+      <footer class="blog-footer">
+        <a href="/blog" class="link-button">← All Posts</a>
+        <a href="/" class="link-button">← Home</a>
+      </footer>
+    </article>
+  </div>
+
+  <style>
+    .blog-post {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--line-color);
+    }
+
+    .blog-header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+
+    .blog-content {
+      line-height: 1.7;
+      font-size: 1.1em;
+    }
+
+    .blog-content h2, .blog-content h3 {
+      color: var(--accent-color);
+      margin-top: 2em;
+      margin-bottom: 1em;
+    }
+
+    .blog-content p {
+      margin-bottom: 1.5em;
+    }
+
+    .blog-content code {
+      background: var(--accent-color);
+      color: var(--bg-color);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    .blog-content pre {
+      background: var(--line-color);
+      color: var(--bg-color);
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 2em 0;
+    }
+
+    .blog-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid var(--line-color);
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+  </style>
+</Layout>

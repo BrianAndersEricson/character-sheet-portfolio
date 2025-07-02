@@ -1,0 +1,31 @@
+[
+  {
+    "title": "Personal Portfolio Redesign",
+    "description": "Astro, TypeScript, Tailwind CSS",
+    "status": "In Progress - 75% Complete"
+  },
+  {
+    "title": "Fantasy Guild Simulation",
+    "url": "https://github.com/BrianAndersEricson/fantasy_guild_simulation",
+    "description": "Turn-based dungeon crawler simulation game. Python backend, JavaScript interface.",
+    "status": "MVP - 90% Complete"
+  },
+  {
+    "title": "Flavor Chronicles",
+    "url": "https://flavorchronicles.com/",
+    "description": "Launching community-based recipe review — reviving my late mother's food blog by sharing her cookbook collection with friends and family and documenting their cooking experiences.",
+    "status": "Soft Launch Ongoing"
+  },
+  {
+    "title": "Fables of the Twin Moons – Playtest 3",
+    "url": "https://omnimyth.press/",
+    "description": "Tabletop RPG in development. Writing, layout, art, and system design handled in-house.",
+    "status": "80% Done"
+  },
+  {
+    "title": "Homelab & Infrastructure",
+    "description": "Proxmox-powered virtual environment with Debian and Ubuntu Server VMs. Dockerized services, custom ChatGPT agent, game hosting for friends and family. Developed on a Framework Laptop running Arch Linux.",
+    "status": "Ongoing - Actively Maintained"
+  }
+]
+
