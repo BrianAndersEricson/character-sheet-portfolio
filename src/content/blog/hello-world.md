@@ -9,9 +9,11 @@ I had a few goals in doing so, the first being... I've learned a lot since I dep
 
 The first site that I made:
 
-<img src="/oldsite.png" alt="briananders.com, Theories of the Aetherplane" style="max-width: 400px; padding: 1rem;" /> 
+<a href="/oldsite.png" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center;">
+  <img src="/oldsite.png" alt="briananders.com, Theories of the Aetherplane" style="max-width: 500px; width: 100%; height: auto; padding: 1rem; display: inline-block;" />
+</a>
 
-used a prebuilt Astro template called [Astro Paper](https://github.com/satnaing/astro-paper). It was good, snappy, worked well, feature rich... But it was too much for what I needed and it was kind of a pain to actually make posts. I tried integrating a back-end to simplify the posting process, but again... Kind of a pain. 
+Used a prebuilt Astro template called [Astro Paper](https://github.com/satnaing/astro-paper). It was good, snappy, worked well, feature rich... But it was too much for what I needed and it was kind of a pain to actually make posts. I tried integrating a back-end to simplify the posting process, but again... Kind of a pain. 
 
 Anywho, I've since learned a lot about, just about everything... So I've worked to make my own theme this time, reminiscent of a Tabletop RPG Character Sheet, specifically the character sheet from one of my work in progress projects (Fables of the Twin Moons).
 
