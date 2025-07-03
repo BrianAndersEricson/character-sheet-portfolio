@@ -13,7 +13,7 @@ Script in the code block below (this gives us a chance to see how the code block
 
 Note that this script would be a little weirdly recursive, so I had to remove the code block sample from the template in the script... If you use the bash script yourself for some reason feel free to add a code block to it for your sample document.
 
-```
+```bash
 #!/bin/bash
 
 # Colors for pretty output
