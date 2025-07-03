@@ -4,7 +4,7 @@ export default defineConfig({
   site: 'https://bericson.com',
   markdown: {
     shikiConfig: {
-      theme: 'github-light',
+      theme: 'css-variables',
       wrap: true
     }
   }
