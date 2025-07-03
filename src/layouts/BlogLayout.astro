@@ -27,9 +27,9 @@ const { title, excerpt } = Astro.props;
         --accent-color-rgb: 107, 107, 107;
         --paper-shadow: rgba(0, 0, 0, 0.1);
         
-        /* Astro code block variables for light theme */
+        /* Astro code block variables - using the lighter background for both themes */
         --astro-code-color-text: #2a2520;
-        --astro-code-color-background: #4a453f;
+        --astro-code-color-background: #8a857f;
         --astro-code-token-constant: #d73a49;
         --astro-code-token-string: #032f62;
         --astro-code-token-comment: #6a737d;
@@ -49,18 +49,9 @@ const { title, excerpt } = Astro.props;
         --accent-color-rgb: 154, 154, 154;
         --paper-shadow: rgba(255, 255, 255, 0.05);
         
-        /* Astro code block variables for dark theme */
-        --astro-code-color-text: #e8e6e0;
+        /* Same background color for dark mode - just adjust text colors */
+        --astro-code-color-text: #1a1612;
         --astro-code-color-background: #8a857f;
-        --astro-code-token-constant: #79b8ff;
-        --astro-code-token-string: #9ecbff;
-        --astro-code-token-comment: #6a737d;
-        --astro-code-token-keyword: #f97583;
-        --astro-code-token-parameter: #e1e4e8;
-        --astro-code-token-function: #b392f0;
-        --astro-code-token-string-expression: #9ecbff;
-        --astro-code-token-punctuation: #e1e4e8;
-        --astro-code-token-link: #9ecbff;
       }
 
       * {
