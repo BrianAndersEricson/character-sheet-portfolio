@@ -1,16 +1,17 @@
 ---
 export interface Props {
-  title: string;
+	title: string;
+	excerpt?: string;
 }
 
-const { title } = Astro.props;
+const { title, excerpt } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Personal portfolio in character sheet format" />
+		<meta name="description" content={excerpt || "A secret blog post."} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>

@@ -14,7 +14,7 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.data.title} excerpt={data.excerpt}>
   <div class="character-sheet">
     <article class="blog-post">
       <header class="blog-header">
@@ -31,8 +31,8 @@ const { Content } = await post.render();
       </div>
 
       <footer class="blog-footer">
-        <a href="/blog" class="link-button">← All Posts</a>
-        <a href="/" class="link-button">← Home</a>
+	<a href="/" class="link-button">← Home</a>
+	<a href="/blog" class="link-button">← All Posts</a>
       </footer>
     </article>
   </div>
