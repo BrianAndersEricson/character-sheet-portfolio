@@ -27,18 +27,20 @@ const { title, excerpt } = Astro.props;
         --accent-color-rgb: 107, 107, 107;
         --paper-shadow: rgba(0, 0, 0, 0.1);
         
-        /* Astro code block variables - higher contrast colors for greige background */
-        --astro-code-color-text: #1a1a1a;
-        --astro-code-color-background: #8a857f;
-        --astro-code-token-constant: #c41e3a;
-        --astro-code-token-string: #2d5016;
-        --astro-code-token-comment: #4a4a4a;
-        --astro-code-token-keyword: #8b008b;
-        --astro-code-token-parameter: #1a1a1a;
-        --astro-code-token-function: #4b0082;
-        --astro-code-token-string-expression: #2d5016;
-        --astro-code-token-punctuation: #1a1a1a;
-        --astro-code-token-link: #2d5016;
+        /* Consistent dark code block theme for both light and dark modes */
+        --astro-code-color-text: #e6e2e0;
+        --astro-code-color-background: #1b1918;
+        --astro-code-token-constant: #f22c40;     /* Red - numbers, constants */
+        --astro-code-token-string: #7b9726;      /* Green - strings */
+        --astro-code-token-comment: #68615e;     /* Muted gray - comments */
+        --astro-code-token-keyword: #df5320;     /* Orange - keywords (if, else, function) */
+        --astro-code-token-parameter: #c38418;   /* Yellow - parameters */
+        --astro-code-token-function: #00ad9c;    /* Teal - function/method names */
+        --astro-code-token-string-expression: #7b9726; /* Green - string expressions */
+        --astro-code-token-punctuation: #9c9491; /* Light gray - punctuation */
+        --astro-code-token-link: #407ee7;        /* Blue - links */
+        --astro-code-token-variable: #6666ea;    /* Purple - variables */
+        --astro-code-token-class-name: #c33ff3;  /* Pink - class names */
       }
 
       [data-theme="dark"] {
@@ -49,18 +51,8 @@ const { title, excerpt } = Astro.props;
         --accent-color-rgb: 154, 154, 154;
         --paper-shadow: rgba(255, 255, 255, 0.05);
         
-        /* Same background color for dark mode - adjust text colors for contrast */
-        --astro-code-color-text: #1a1a1a;
-        --astro-code-color-background: #8a857f;
-        --astro-code-token-constant: #c41e3a;
-        --astro-code-token-string: #2d5016;
-        --astro-code-token-comment: #4a4a4a;
-        --astro-code-token-keyword: #8b008b;
-        --astro-code-token-parameter: #1a1a1a;
-        --astro-code-token-function: #4b0082;
-        --astro-code-token-string-expression: #2d5016;
-        --astro-code-token-punctuation: #1a1a1a;
-        --astro-code-token-link: #2d5016;
+        /* Same dark code block theme - consistent across both modes */
+        /* No changes needed - using same variables as light mode */
       }
 
       * {
