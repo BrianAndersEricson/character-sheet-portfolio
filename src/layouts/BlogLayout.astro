@@ -1,7 +1,7 @@
 ---
 export interface Props {
-	title: string;
-	excerpt?: string;
+        title: string;
+        excerpt?: string;
 }
 
 const { title, excerpt } = Astro.props;
@@ -11,7 +11,7 @@ const { title, excerpt } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-		<meta name="description" content={excerpt || "A secret blog post."} />
+                <meta name="description" content={excerpt || "A secret blog post."} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
@@ -24,6 +24,7 @@ const { title, excerpt } = Astro.props;
         --text-color: #2a2520;
         --line-color: #4a453f;
         --accent-color: #6b6b6b;
+        --accent-color-rgb: 107, 107, 107;
         --paper-shadow: rgba(0, 0, 0, 0.1);
       }
 
@@ -32,6 +33,7 @@ const { title, excerpt } = Astro.props;
         --text-color: #e8e6e0;
         --line-color: #8a857f;
         --accent-color: #9a9a9a;
+        --accent-color-rgb: 154, 154, 154;
         --paper-shadow: rgba(255, 255, 255, 0.05);
       }
 
@@ -49,27 +51,73 @@ const { title, excerpt } = Astro.props;
         padding: 20px;
         transition: all 0.3s ease;
       }
-      
-      p {
-	margin-bottom: 1.25em;
-	line-height: 1.6;
-	}
 
-	h1, h2, h3, h4, h5, h6 {
-	margin-top: 2em;
-	margin-bottom: 0.5em;
-	line-height: 1.3;
+      p {
+        margin-bottom: 1.25em;
+        line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+        margin-top: 2em;
+        margin-bottom: 0.5em;
+        line-height: 1.3;
       }
 
-	ul, ol {
-		margin-bottom: 1.25em;
-		padding-left: 1.25em;
-	}
+        ul, ol {
+                margin-bottom: 1.25em;
+                padding-left: 1.25em;
+        }
 
-	li {
-	      margin-bottom: 0.5em;
-	      line-height: 1.5;
-	}
+        li {
+              margin-bottom: 0.5em;
+              line-height: 1.5;
+        }
+
+      /* Code styling */
+
+      /* Inline code */
+      code {
+        background: var(--line-color);
+        color: var(--bg-color);
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-size: 0.9em;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      }
+
+      /* Code blocks */
+      pre {
+        background: var(--line-color);
+        color: var(--bg-color);
+        padding: 1.5em;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 2em 0;
+        border: 2px solid var(--accent-color);
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.9em;
+        line-height: 1.4;
+      }
+
+      /* Code inside pre blocks */
+      pre code {
+        background: none;
+        color: inherit;
+        padding: 0;
+        border-radius: 0;
+        font-size: inherit;
+      }
+
+      /* Blockquotes */
+      blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding: 1em 1.5em;
+        margin: 1.5em 0;
+        font-style: italic;
+        color: var(--accent-color);
+        background: rgba(var(--accent-color-rgb), 0.05);
+        border-radius: 0 8px 8px 0;
+      }
 
       .character-sheet {
         max-width: 1200px;
@@ -363,20 +411,20 @@ const { title, excerpt } = Astro.props;
           grid-template-columns: 1fr;
           gap: 20px;
         }
-        
+
         .character-sheet {
           padding: 30px;
           margin: 10px;
         }
-        
+
         .name {
           font-size: 2em;
         }
-        
+
         .links-container {
           gap: 10px;
         }
-        
+
         .link-button {
           padding: 8px 15px;
           font-size: 0.9em;
@@ -396,7 +444,7 @@ const { title, excerpt } = Astro.props;
         const body = document.body;
         const currentTheme = body.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         body.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
       }
@@ -404,12 +452,12 @@ const { title, excerpt } = Astro.props;
       // Typing animation
       function typeWriter() {
         const typewriterElement = document.getElementById('typewriter');
-        
+
         if (!typewriterElement) return;
-        
+
         const text = typewriterElement.textContent || "Your Name Here";
         typewriterElement.textContent = '';
-        
+
         let i = 0;
         function type() {
           if (i < text.length && typewriterElement) {
@@ -418,7 +466,7 @@ const { title, excerpt } = Astro.props;
             setTimeout(type, 100);
           }
         }
-        
+
         setTimeout(type, 500);
       }
 
@@ -426,7 +474,7 @@ const { title, excerpt } = Astro.props;
       document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.body.setAttribute('data-theme', savedTheme);
-        
+
         typeWriter();
       });
 
