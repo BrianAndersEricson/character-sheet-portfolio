@@ -27,18 +27,18 @@ const { title, excerpt } = Astro.props;
         --accent-color-rgb: 107, 107, 107;
         --paper-shadow: rgba(0, 0, 0, 0.1);
         
-        /* Astro code block variables - using the lighter background for both themes */
-        --astro-code-color-text: #2a2520;
+        /* Astro code block variables - higher contrast colors for greige background */
+        --astro-code-color-text: #1a1a1a;
         --astro-code-color-background: #8a857f;
-        --astro-code-token-constant: #d73a49;
-        --astro-code-token-string: #032f62;
-        --astro-code-token-comment: #6a737d;
-        --astro-code-token-keyword: #d73a49;
-        --astro-code-token-parameter: #24292e;
-        --astro-code-token-function: #6f42c1;
-        --astro-code-token-string-expression: #032f62;
-        --astro-code-token-punctuation: #24292e;
-        --astro-code-token-link: #032f62;
+        --astro-code-token-constant: #c41e3a;
+        --astro-code-token-string: #2d5016;
+        --astro-code-token-comment: #4a4a4a;
+        --astro-code-token-keyword: #8b008b;
+        --astro-code-token-parameter: #1a1a1a;
+        --astro-code-token-function: #4b0082;
+        --astro-code-token-string-expression: #2d5016;
+        --astro-code-token-punctuation: #1a1a1a;
+        --astro-code-token-link: #2d5016;
       }
 
       [data-theme="dark"] {
@@ -49,9 +49,18 @@ const { title, excerpt } = Astro.props;
         --accent-color-rgb: 154, 154, 154;
         --paper-shadow: rgba(255, 255, 255, 0.05);
         
-        /* Same background color for dark mode - just adjust text colors */
-        --astro-code-color-text: #1a1612;
+        /* Same background color for dark mode - adjust text colors for contrast */
+        --astro-code-color-text: #1a1a1a;
         --astro-code-color-background: #8a857f;
+        --astro-code-token-constant: #c41e3a;
+        --astro-code-token-string: #2d5016;
+        --astro-code-token-comment: #4a4a4a;
+        --astro-code-token-keyword: #8b008b;
+        --astro-code-token-parameter: #1a1a1a;
+        --astro-code-token-function: #4b0082;
+        --astro-code-token-string-expression: #2d5016;
+        --astro-code-token-punctuation: #1a1a1a;
+        --astro-code-token-link: #2d5016;
       }
 
       * {
