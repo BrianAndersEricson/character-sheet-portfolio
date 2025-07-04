@@ -12,7 +12,7 @@ NC='\033[0m' # No Color
 
 # Fancy header
 echo -e "${PURPLE}╔══════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${PURPLE}║${WHITE}                  ✨ New Blog Post Creator ✨${PURPLE}║${NC}"
+echo -e "${PURPLE}║${WHITE}                   ✨ New Blog Post Creator ✨                ${PURPLE}║${NC}"
 echo -e "${PURPLE}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -79,7 +79,7 @@ title: "$title"
 date: $current_date
 EOF
 
-# Add excerpt if provided
+# Add excerpt to frontmatter if provided
 if [ ! -z "$excerpt" ]; then
     echo "excerpt: \"$excerpt\"" >> "$filepath"
 fi
@@ -87,35 +87,17 @@ fi
 # Add draft status
 echo "draft: $draft" >> "$filepath"
 
-cat >> "$filepath" << 'EOF'
----
+# Begin content
+echo "---" >> "$filepath"
+echo "" >> "$filepath"
 
-# Your Content Here
+if [ ! -z "$excerpt" ]; then
+    echo "$excerpt" >> "$filepath"
+    echo "" >> "$filepath"
+fi
 
-Write your amazing blog post content here! You can use:
-
-## Markdown Features
-
-- **Bold text**
-- *Italic text*
-- [Links](https://example.com)
-- `Inline code`
-
-```javascript
-// Code blocks
-console.log("Hello, world!");
-```
-
-> Blockquotes for important notes
-
-## Getting Started
-
-Just start writing below this line and delete this template content when you're ready.
-
----
-
-Happy writing! 🚀
-EOF
+echo "<!-- Start your post content below -->" >> "$filepath"
+echo "" >> "$filepath"
 
 echo -e "${GREEN}✅ Created: ${filepath}${NC}"
 echo ""
@@ -136,10 +118,9 @@ echo -e "${BLUE}🚀 Opening in nvim...${NC}"
 echo -e "${YELLOW}   Save and exit when you're done writing!${NC}"
 echo ""
 
-# Open nvim and wait for it to close
 nvim "$filepath"
 
-# Check if user actually saved (file has more content than template)
+# Check if user actually saved (file still exists)
 if [ ! -f "$filepath" ]; then
     echo -e "${RED}❌ File was deleted. Aborting.${NC}"
     exit 1
@@ -156,34 +137,18 @@ read -p "   Choice [1-3]: " git_choice
 case "$git_choice" in
     1)
         echo -e "${BLUE}📤 Adding, committing, and pushing...${NC}"
-        
-        # Add the file
         git add "$filepath"
-        
-        # Create commit message
         commit_msg="Add new blog post: $title"
-        
-        # Commit
         git commit -m "$commit_msg"
-        
-        # Push
         git push origin main
-        
         echo -e "${GREEN}✅ Successfully pushed to main branch!${NC}"
         echo -e "${CYAN}🌐 Your post will be live soon at bericson.com${NC}"
         ;;
     2)
         echo -e "${BLUE}💾 Adding and committing...${NC}"
-        
-        # Add the file
         git add "$filepath"
-        
-        # Create commit message
         commit_msg="Add new blog post: $title"
-        
-        # Commit
         git commit -m "$commit_msg"
-        
         echo -e "${GREEN}✅ Committed! Push when ready with: git push origin main${NC}"
         ;;
     3)
@@ -196,7 +161,7 @@ esac
 
 echo ""
 echo -e "${PURPLE}╔══════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${PURPLE}║${GREEN}         🎉 All done! Happy blogging! 🎉     ${PURPLE}║${NC}"
+echo -e "${PURPLE}║${GREEN}                     🎉 All done! Happy blogging! 🎉               ${PURPLE}║${NC}"
 echo -e "${PURPLE}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -206,3 +171,4 @@ if [ "$draft" = "true" ]; then
     echo -e "${YELLOW}   Set 'draft: false' in the frontmatter when ready to publish!${NC}"
     echo ""
 fi
+
