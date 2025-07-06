@@ -8,7 +8,8 @@ draft: false
 The path of least resistance is a heck of a thing... Sometimes you have to carve that path.
 I know the premise sounds ridiculous. If you're going down the path of least resistance, there should be... no resistance. But bear with me for a moment.
 
-I'm observing the way that the world is changing with the introduction of AI, and it's causing me to reflect a lot on the process by which I learned to use computers in the first place. When I was about 9 years old, my dad decided to purchase myself and my sister's each our own computer. This would have been sometime around 2001.
+I'm observing the way that the world is changing with the introduction of AI, and it's causing me to reflect a lot on the process by which I learned to use computers in the first place. When I was about 9 years old, my dad decided to purchase myself and my sisters each our own computer. This would have been sometime around 2001.
+
 This was a big decision on his part, it was a huge commitment. He went to a local PC shop, run by a small family, and they built us these very standard beige box PCs. My oldest sister's had a disk drive. I still remember us setting it up, hooking up the speakers the first night and listening to [Like Humans Do](https://www.youtube.com/watch?v=xMeivIkwf_I) which was included with Windows XP at the time.
 
 My dad giving me the autonomy to have a desktop computer connected to the internet at 9 years old, not long after Windwos XP had come out was... Well, maybe not the best idea but I think I was too excited to play games to get into too much trouble on the internet. Eventually... Maybe 2003? He brought home a copy of Everquest and I had to learn about the premise of moderation. I have always struggled with the premise of moderation, especially in regards to hobbies.
