@@ -5,16 +5,16 @@
     "status": "100% Complete"
   },
   {
-    "title": "Fantasy Guild Simulation",
-    "url": "https://github.com/BrianAndersEricson/fantasy_guild_simulation",
-    "description": "Turn-based dungeon crawler simulation game. Python backend, JavaScript interface.",
-    "status": "MVP - 90% Complete"
+    "title": "Omnimyth Web Transition",
+    "url": "https://github.com/BrianAndersEricson/omnimyth-static",
+    "description": "A static rebuild of the Omnimyth website and recompilation of resources for easy user access.",
+    "status": "100% Complete"
   },
   {
     "title": "Flavor Chronicles",
     "url": "https://flavorchronicles.com/",
     "description": "Launching community-based recipe review — reviving my late mother's food blog by sharing her cookbook collection with friends and family and documenting their cooking experiences.",
-    "status": "Soft Launch Ongoing"
+    "status": "Web services transition complete"
   },
   {
     "title": "Fables of the Twin Moons – Playtest 3",
@@ -24,7 +24,7 @@
   },
   {
     "title": "Homelab & Infrastructure",
-    "description": "Proxmox-powered virtual environment with Debian and Ubuntu Server VMs. Dockerized services, custom ChatGPT agent, game hosting for friends and family. Developed on a Framework Laptop running Arch Linux.",
+    "description": "Proxmox-powered virtual environment with Debian and Ubuntu Server VMs. Dockerized services, automated music ripping image, self-hosted music library, game hosting for friends and family. Developed on a Framework Laptop running Arch Linux, and now a desktop running Arch Linux with KDE Plasma DE.",
     "status": "Ongoing - Actively Maintained"
   }
 ]
